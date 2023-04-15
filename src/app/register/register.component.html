@@ -1,0 +1,78 @@
+<style>
+    .register-block{
+        float:left;
+        width:100%;
+        padding : 50px 0;
+    }
+
+    .container{background:#D3D3D3; border-radius: 10px; width: 40%; height: 40%;}
+    .register-sec{padding: 50px 30px; position:relative;}
+    .register-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #0069c0;}
+    .register-sec h2:after{content:" "; width:100px; height:5px; background:#6ec6ff; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
+    .btn-login{background: #0069c0; color:#fff; font-weight:600;}
+</style>
+<app-nav-bar></app-nav-bar>
+<section class="register-block">
+    <div class="container">
+       <div class="row ">
+          <div class="col register-sec">
+             <h2 class="text-center">Register Now</h2>
+             <form class="register-form" action="" #f="ngForm" (ngSubmit)="f.form.valid &&  Onsubmint()" >
+              <div class="form-group">
+                <label for="exampleInputEmail1" class="text-uppercase">Name</label>
+  
+                <input type="text" class="form-control" name="name" id="" [(ngModel)]="formName.name" #name="ngModel" required>
+                <span class="text-danger" *ngIf="this.Submit&&name.errors?.['required']">
+                    Name is required.
+                </span>
+             </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1" class="text-uppercase">Email</label>
+  
+                <input type="text" class="form-control"  name="email" id="" [(ngModel)]="formName.email" #email="ngModel" required>
+                <span class="text-danger" *ngIf="this.Submit && email.errors?.['required']">
+                    Email is required.
+                </span>
+             </div>
+             <div class="form-group">
+                <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+                <input class="form-control" type="password" name="password" id="" [(ngModel)]="formName.password" #Pass="ngModel" required 
+                 minlength="8">
+                <span class="text-danger" *ngIf="this.Submit && Pass.errors?.['required']">
+                    Password is required.
+                </span>
+
+                <span class="text-danger" *ngIf="this.Submit && Pass.errors?.['minlength']">
+                 Min Length Of the password is 8.
+                </span>
+
+             </div>
+             <div class="form-group">
+  
+                <span class="text-danger" *ngIf="this.errormsg">
+                   <p [innerHtml]="this.errormsg">Custom Error Message! {{this.errormsg}}</p>
+                </span>
+                <div class="text-center" *ngIf="this.Loadings">
+                  <div class="spinner-border text-primary " role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+  
+                <input type="submit" class="btn btn-login float-right" value="Register" (click)="this.Submit=true" [disabled]="this.isDisabled">
+             </div>
+             <div class="clearfix"></div>
+             <div class="form-group">
+               Already have account ? Please <a href="javascript:void(0);" routerLink="/login">Login</a>
+             </div>
+  
+  
+             </form>
+  
+  
+          </div>
+  
+       </div>
+  
+  
+    </div>
+  </section>

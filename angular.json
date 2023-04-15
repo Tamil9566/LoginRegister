@@ -63,7 +63,8 @@
               "browserTarget": "LoginRegister:build:production"
             },
             "development": {
-              "browserTarget": "LoginRegister:build:development"
+              "browserTarget": "LoginRegister:build:development",
+              "proxyConfig": "src/proxy.Conf.json"
             }
           },
           "defaultConfiguration": "development"

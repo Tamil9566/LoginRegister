@@ -1,0 +1,58 @@
+<style>
+    .login-block{
+        float:left;
+        width:100%;
+        padding : 50px 0;
+    }
+
+    .container{background:#D3D3D3; border-radius: 10px; width: 40%; height: 40%;}
+    .login-sec{padding: 50px 30px; position:relative;}
+    .login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #0069c0;}
+    .login-sec h2:after{content:" "; width:100px; height:5px; background:#6ec6ff; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
+    .btn-login{background: #0069c0; color:#fff; font-weight:600;}
+
+</style>
+<app-nav-bar></app-nav-bar>
+<section class="login-block">
+    <div class="container">
+        <div class="row ">
+            <div class="col login-sec">
+                <h2 class="text-center">Login Now</h2>
+                <form class="login-form" action="" #F="ngForm" (ngSubmit)="F.form.valid && OnSumbint()">
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="text-uppercase">Email</label>
+                    <input type="email" class="form-control" name="email" id="" placeholder="email" [(ngModel)]="this.Email" #EmailGet="ngModel" required>
+                    <span class="text-danger" *ngIf="this.Login && EmailGet.errors?.['required']">
+                        Email is required.
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+                    <input class="form-control" type="password" name="password" placeholder="password" id="" [(ngModel)]="this.Password" #pass="ngModel"  minlength="8" required>
+                    <span class="text-danger" *ngIf="this.Login && pass.errors?.['required']" >
+                        Password is required.
+                    </span>
+                    <span class="text-danger" *ngIf="this.Login && pass.errors?.['minlength']" >
+                        Minmum 8 letter of the password.
+                    </span>
+                </div>
+                <div class="form-group">
+                    <div class="text-center" *ngIf="this.Loading">
+                        <div class="spinner-border text-primary " role="status">
+                        <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <span class="text-danger" *ngIf="this.errormsg">
+                    <p>Custom Error Message!</p>
+                    </span>
+                    <input type="submit" class="btn btn-login float-right" value="Login" (click)="this.Login=true" [disabled]="this.btnEnable">
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                Create new account ? Please <a href="javascript:void(0);">Register</a>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
